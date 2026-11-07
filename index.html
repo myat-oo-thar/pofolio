@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#211812">
+  <title>Myat Oo Thar | Software Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Myat Oo Thar, aspiring software engineer focused on Java, Spring Boot, MySQL and building useful software.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #211812;
+      --panel: #2b2019;
+      --panel2: #34271e;
+      --wood: #8b6547;
+      --wood-light: #bd936d;
+      --cream: #f0e5d5;
+      --muted: #b9a894;
+      --line: rgba(220,190,157,.17);
+      --green: #a8b59a;
+      --mono: "DM Mono", monospace;
+      --sans: "DM Sans", sans-serif;
+      --serif: "Playfair Display", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--cream); background-color: var(--bg);
+      font-family: var(--sans); line-height: 1.65;
+      background-image:
+        radial-gradient(ellipse at 85% 8%, rgba(139,101,71,.18), transparent 34%),
+        repeating-linear-gradient(0deg, transparent 0 58px, rgba(255,255,255,.012) 59px 60px);
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px);
+      background: rgba(33,24,18,.88); border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-family: var(--serif); font-size: 21px; letter-spacing: .3px; }
+    .brand span { color: var(--wood-light); }
+    .navlinks { display: flex; align-items: center; gap: 28px; color: var(--muted); font-size: 13px; }
+    .navlinks a:hover { color: var(--cream); }
+    .nav-cta { border: 1px solid var(--wood-light); color: var(--cream) !important; padding: 9px 15px; border-radius: 3px; }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 60px; padding: 90px 0 100px; }
+    .eyebrow { color: var(--wood-light); font: 12px var(--mono); letter-spacing: 2px; text-transform: uppercase; }
+    h1 { font: 600 clamp(48px, 7vw, 82px)/1.08 var(--serif); letter-spacing: -2px; margin: 22px 0; }
+    h1 em { color: var(--wood-light); font-style: normal; }
+    .intro { color: var(--muted); font-size: 17px; max-width: 570px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 19px; border-radius: 3px; font-size: 13px; font-weight: 700; transition: .2s; }
+    .btn-primary { color: #211812; background: var(--wood-light); border: 1px solid var(--wood-light); }
+    .btn-primary:hover { background: #d0a47d; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid var(--line); color: var(--cream); }
+    .btn-outline:hover { border-color: var(--wood-light); }
+    .hero-card {
+      min-height: 390px; position: relative; padding: 28px; border: 1px solid rgba(220,190,157,.22);
+      background: linear-gradient(145deg, rgba(139,101,71,.25), rgba(43,32,25,.92) 58%);
+      box-shadow: 18px 18px 0 rgba(139,101,71,.09);
+      display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
+    }
+    .hero-card:before { content:""; position:absolute; inset:0; opacity:.16; pointer-events:none;
+      background: repeating-linear-gradient(8deg, transparent 0 17px, rgba(220,190,157,.13) 18px 19px); }
+    .card-top, .code-window, .card-bottom { position: relative; }
+    .card-top { display:flex; justify-content:space-between; color:var(--muted); font:11px var(--mono); }
+    .monogram { font: 600 120px/.9 var(--serif); color: rgba(240,229,213,.12); text-align:center; margin: 25px 0; }
+    .code-window { border:1px solid var(--line); background:rgba(20,14,10,.55); padding:18px; font:12px/2 var(--mono); color:var(--muted); }
+    .code-window .key { color:#d6a77e; } .code-window .value { color:#b8c49e; }
+    .card-bottom { display:flex; justify-content:space-between; align-items:center; margin-top:22px; font:11px var(--mono); color:var(--muted); }
+    .status { color:var(--green); }
+    section { padding: 88px 0; border-top: 1px solid var(--line); }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:38px; }
+    h2 { font:600 clamp(34px, 4vw, 48px)/1.15 var(--serif); margin:10px 0 0; }
+    .section-note { color:var(--muted); max-width:360px; font-size:13px; }
+    .about-grid { display:grid; grid-template-columns: 1fr 1fr; gap:60px; }
+    .about-copy { color:var(--muted); max-width:600px; }
+    .about-copy strong { color:var(--cream); font-weight:600; }
+    .facts { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .fact { padding:20px; border:1px solid var(--line); background:rgba(52,39,30,.55); }
+    .fact small { display:block; color:var(--wood-light); font:10px var(--mono); letter-spacing:1px; text-transform:uppercase; }
+    .fact b { display:block; margin-top:7px; font-size:14px; }
+    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .skill-card { border:1px solid var(--line); background:var(--panel); padding:24px; min-height:185px; }
+    .skill-card .num { color:var(--wood-light); font:11px var(--mono); }
+    .skill-card h3 { font:600 21px var(--serif); margin:15px 0 8px; }
+    .skill-card p { color:var(--muted); font-size:13px; margin:0; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .tag { border:1px solid var(--line); padding:5px 9px; color:#d5c3ae; font:10px var(--mono); }
+    .project { display:grid; grid-template-columns: .8fr 1.2fr; border:1px solid var(--line); background:linear-gradient(110deg,var(--panel2),var(--panel)); }
+    .project-art { min-height:300px; display:grid; place-items:center; padding:30px; background:
+      repeating-linear-gradient(0deg, transparent 0 22px, rgba(240,229,213,.035) 23px 24px),
+      linear-gradient(135deg,#60452f,#2b2019); }
+    .book-stack { width:190px; transform:rotate(-7deg); }
+    .book { height:43px; margin:8px 0; border:1px solid rgba(240,229,213,.3); display:flex; align-items:center; padding-left:16px; font:11px var(--mono); color:#ead9c5; box-shadow:5px 6px 0 rgba(0,0,0,.18); }
+    .book:nth-child(1) { background:#79563b; width:180px; }
+    .book:nth-child(2) { background:#49392e; width:195px; margin-left:-9px; }
+    .book:nth-child(3) { background:#927052; width:170px; margin-left:8px; }
+    .project-info { padding:38px; }
+    .project-info h3 { font:600 30px var(--serif); margin:10px 0; }
+    .project-info p { color:var(--muted); font-size:14px; }
+    .project-meta { color:var(--wood-light); font:11px var(--mono); }
+    .project-links { display:flex; gap:18px; margin-top:25px; font-size:13px; }
+    .project-links a { border-bottom:1px solid var(--wood-light); padding-bottom:3px; }
+    .timeline { border-left:1px solid var(--wood); margin-left:7px; padding-left:28px; }
+    .timeline-item { position:relative; padding:0 0 28px; }
+    .timeline-item:before { content:""; position:absolute; left:-34px; top:8px; width:10px; height:10px; border-radius:50%; background:var(--wood-light); box-shadow:0 0 0 5px var(--bg); }
+    .timeline-item small { color:var(--wood-light); font:11px var(--mono); }
+    .timeline-item h3 { font:600 20px var(--serif); margin:5px 0; }
+    .timeline-item p { color:var(--muted); font-size:13px; margin:0; }
+    .contact-panel { padding:44px; border:1px solid var(--line); background:linear-gradient(120deg,rgba(139,101,71,.22),var(--panel)); display:flex; justify-content:space-between; align-items:center; gap:30px; }
+    .contact-panel h2 { max-width:550px; }
+    .contact-panel p { color:var(--muted); }
+    footer { padding:28px 0; color:var(--muted); font:11px var(--mono); display:flex; justify-content:space-between; gap:20px; }
+    @media(max-width:760px) {
+      .wrap { width:min(100% - 32px, 560px); }
+      .navlinks { gap:13px; font-size:11px; } .navlinks a:not(.nav-cta) { display:none; }
+      .hero { grid-template-columns:1fr; gap:38px; padding:70px 0; }
+      .hero-card { min-height:330px; }
+      .about-grid, .project { grid-template-columns:1fr; gap:25px; }
+      .skills-grid { grid-template-columns:1fr; }
+      .section-head { display:block; } .section-note { margin-top:15px; }
+      .project-art { min-height:220px; }
+      .project-info { padding:26px; }
+      .contact-panel { display:block; padding:28px; }
+      .contact-panel .btn { margin-top:12px; }
+      footer { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap">
+      <a class="brand" href="#home">Myat Oo <span>Thar.</span></a>
+      <div class="navlinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#journey">Journey</a>
+        <a class="nav-cta" href="#contact">Contact ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home" style="border:0">
+      <div>
+        <div class="eyebrow">Aspiring Software Engineer · Myanmar</div>
+        <h1>Building useful<br>things with <em>code.</em></h1>
+        <p class="intro">I'm Myat Oo Thar, an aspiring software engineer focused on Java backend development. I enjoy understanding how systems work, solving problems, and turning ideas into practical applications.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">Explore my work ↗</a>
+          <a class="btn btn-outline" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Developer profile card">
+        <div class="card-top"><span>DEVELOPER_PROFILE</span><span>MM / 001</span></div>
+        <div>
+          <div class="monogram"><img src="./image.jpg" width="200" height="210"></div>
+          <div class="code-window">
+            <div><span class="key">const</span> developer = {</div>
+            <div>&nbsp;&nbsp;name: <span class="value">'Myat Oo Thar'</span>,</div>
+            <div>&nbsp;&nbsp;focus: <span class="value">'Backend Development'</span>,</div>
+            <div>&nbsp;&nbsp;stack: <span class="value">'Java · Spring Boot'</span></div>
+            <div>};</div>
+          </div>
+        </div>
+        <div class="card-bottom"><span>CURIOUS BY NATURE</span><span class="status">● OPEN TO LEARNING</span></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">01 / About me</div><h2>A little about my path.</h2></div>
+          <p class="section-note">Learning by building, improving through practice, and staying curious about technology.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I'm studying <strong>Computer Engineering / Information Technology</strong> at Yangon Technological University. My long-term goal is to become a capable software engineer who can design and build reliable applications.</p>
+            <p>My current focus is strengthening my backend foundations with <strong>Java, Spring Boot, REST APIs, and MySQL</strong>. I believe the best way to learn is to build real projects, understand the mistakes, and improve one step at a time.</p>
+            <p>I'm also interested in frontend and mobile development, and plan to explore Flutter as I grow my skills.</p>
+          </div>
+          <div class="facts">
+            <div class="fact"><small>Current focus</small><b>Backend development</b></div>
+            <div class="fact"><small>Primary language</small><b>Java</b></div>
+            <div class="fact"><small>Database</small><b>MySQL</b></div>
+            <div class="fact"><small>Based in</small><b>Myanmar</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">02 / Toolkit</div><h2>Technologies I'm learning.</h2></div>
+          <p class="section-note">A growing toolkit. I keep learning and applying each technology through small exercises and projects.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><div class="num">01 — BACKEND</div><h3>Backend development</h3><p>Building application logic and learning how services communicate through APIs.</p><div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST API</span></div></article>
+          <article class="skill-card"><div class="num">02 — DATABASE</div><h3>Data & storage</h3><p>Working with relational data, SQL queries, and connecting applications to databases.</p><div class="tags"><span class="tag">MySQL</span><span class="tag">SQL</span><span class="tag">JDBC</span></div></article>
+          <article class="skill-card"><div class="num">03 — FRONTEND</div><h3>Web foundations</h3><p>Learning the building blocks of web interfaces and how frontend code connects to backend services.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></article>
+          <article class="skill-card"><div class="num">04 — MOBILE</div><h3>Mobile development</h3><p>Exploring Dart and preparing to build cross-platform applications with Flutter.</p><div class="tags"><span class="tag">Dart</span><span class="tag">Flutter · Learning</span></div></article>
+          <article class="skill-card"><div class="num">05 — TOOLS</div><h3>Development tools</h3><p>Practicing version control, IDE workflows, debugging, and project collaboration.</p><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">IntelliJ IDEA</span><span class="tag">VS Code</span></div></article>
+          <article class="skill-card"><div class="num">06 — MINDSET</div><h3>How I work</h3><p>Breaking problems into smaller steps, learning from errors, and improving through consistent practice.</p><div class="tags"><span class="tag">Problem solving</span><span class="tag">Teamwork</span><span class="tag">Self-learning</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">03 / Selected work</div><h2>Things I've built.</h2></div>
+          <p class="section-note">A university team project that helped me practice Java, databases, and application development.</p>
+        </div>
+        <article class="project">
+          <div class="project-art" aria-hidden="true"><div class="book-stack"><div class="book">BOOK ENTRY</div><div class="book">MEMBERS</div><div class="book">BORROW / RETURN</div></div></div>
+          <div class="project-info">
+            <div class="project-meta">JAVA · SWING · MYSQL · TEAM PROJECT</div>
+            <h3>BookEntry</h3>
+            <p>A desktop library-management application developed as a university group project. It helps a librarian manage books, members, borrowing, and returns for a physical library.</p>
+            <p><strong>What I practiced:</strong> Java application structure, Swing UI, JDBC database connectivity, SQL operations, and collaborating on a shared codebase.</p>
+            <div class="tags"><span class="tag">Java</span><span class="tag">Java Swing</span><span class="tag">MySQL</span><span class="tag">JDBC</span></div>
+            <div class="project-links"><a href="https://github.com/Myat-Oo-Thar/BookEntry" target="_blank" rel="noreferrer">View on GitHub ↗</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">04 / Learning journey</div><h2>Where I'm heading.</h2></div>
+          <p class="section-note">A work in progress. The goal is steady growth, strong fundamentals, and useful projects.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item"><small>NOW</small><h3>Strengthening Java backend skills</h3><p>Deepening Java, Spring Boot, REST API design, and MySQL knowledge through practical projects.</p></div>
+          <div class="timeline-item"><small>NEXT</small><h3>Build complete web applications</h3><p>Connect backend services with a frontend, improve testing, and learn deployment workflows.</p></div>
+          <div class="timeline-item"><small>FUTURE</small><h3>Explore Flutter development</h3><p>Use Dart and Flutter to create mobile applications while continuing to grow as a backend developer.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div><div class="eyebrow">05 / Contact</div><h2>Have a project or an opportunity?</h2><p>I'd be happy to connect, learn, and build something meaningful.</p></div>
+          <div class="actions"><a class="btn btn-primary" href="mailto:your.email@example.com">Email me ↗</a><a class="btn btn-outline" href="https://github.com/Myat-Oo-Thar" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><span>© <span id="year"></span> Myat Oo Thar</span><span>Designed with a warm wood-inspired palette.</span><a href="#home">Back to top ↑</a></footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
